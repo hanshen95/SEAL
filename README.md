@@ -14,7 +14,7 @@ SEAL is an LLM fine-tuning framework with safety-enhancing data selection. This 
 SEAL fine-tuning first trains a data selector via solving a bilevel optimization problem. Then it filters the fine-tuing dataset with the trained selector by hard-thresholding. Finally we fine-tune the LLM on the filtered dataset. 
 
 <div align="center">
-    <img alt="SEAL framework" src="./docs/seal_framework.png" style="height: 320px;" />
+    <img alt="SEAL framework" src="./docs/seal_framework.png" style="height: 280px;" />
 </div>
 <br/><br/>
 
@@ -35,7 +35,7 @@ We give an example on the Llama-3-8b-Instruct model as follows.
 
 <br/><br/>
 <div align="center">
-    <img alt="seal llama3" src="./docs/seal_llama3.png" style="height: 220px;" />
+    <img alt="seal llama3" src="./docs/seal_llama3.png" style="height: 210px;" />
 </div>
 <br/><br/>
 
