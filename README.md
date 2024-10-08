@@ -1,5 +1,5 @@
 <div align="center">
-    <img alt="SEAL logo" src="./docs/seal_logo.png" style="height: 130px;" />
+    <img alt="SEAL logo" src="./docs/seal_logo.png" style="height: 110px;" />
 </div>
 
 <hr>
