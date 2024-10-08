@@ -1,21 +1,26 @@
 <div align="center">
-    <img alt="SEAL logo" src="./docs/seal_logo.png" style="height: 160px;" />
+    <img alt="SEAL logo" src="./docs/seal_logo.png" style="height: 130px;" />
 </div>
 
 <hr>
 
 
-SEAL is an LLM fine-tuning framework with safety-enhancing data selection. It features a data selector trainer that filters out low-quality or unsafe samples, effectively boosting safety during LLM training. This implementation is based on OpenRLHF, DeepSpeed, Transformers and Pytorch.
+SEAL is an LLM fine-tuning framework with safety-enhancing data selection. This implementation is based on OpenRLHF, DeepSpeed, Transformers and Pytorch.
 
-<div align="center">
-    <img alt="SEAL framework" src="./docs/seal_framework.png" style="height: 1080px;" />
-</div>
+
 
 ## Introduction
 
-SEAL fine-tuning first trains a data selector via solving a bilevel optimization problem. Then it filters the fine-tuing dataset with the trained selector by hard-thresholding. Finally we fine-tune the LLM on the filtered dataset. This framework and its implementation demonstrates the following merits/features:
+SEAL fine-tuning first trains a data selector via solving a bilevel optimization problem. Then it filters the fine-tuing dataset with the trained selector by hard-thresholding. Finally we fine-tune the LLM on the filtered dataset. 
 
-- **Effective**: We evaluate SEAL on test datasets including  Anthropic HH, Orca and HEx-PHI. SEAL consistently outperforms multiple baselines across different models including Llama-3-8b-Instruct, Merlinite-7b and Pythia-2.8b.
+<div align="center">
+    <img alt="SEAL framework" src="./docs/seal_framework.png" style="height: 320px;" />
+</div>
+<br/><br/>
+
+This framework and its implementation demonstrates the following merits/features:
+
+- **Effective**: We evaluate SEAL on test datasets including [Anthropic HH](https://huggingface.co/datasets/Anthropic/hh-rlhf), [Slim Orca](https://huggingface.co/datasets/Open-Orca/SlimOrca) and [HEx-PHI](https://huggingface.co/datasets/LLM-Tuning-Safety/HEx-PHI). SEAL consistently outperforms multiple baselines across different models including Llama-3-8b-Instruct, Merlinite-7b and Pythia-2.8b.
 
 - **Flexible and transferable**: The performance is relatively robust to data selection percent, and the trained selector can be transferable between fine tuning different models.
 
@@ -28,9 +33,11 @@ SEAL fine-tuning first trains a data selector via solving a bilevel optimization
 
 We give an example on the Llama-3-8b-Instruct model as follows.
 
+<br/><br/>
 <div align="center">
-    <img alt="seal llama3" src="./docs/seal_llama3.png" style="height: 1080px;" />
+    <img alt="seal llama3" src="./docs/seal_llama3.png" style="height: 220px;" />
 </div>
+<br/><br/>
 
 |   | **Anthropic HH test** | **SlimOrca test** | **HEx-PHI** | 
 | :---: | :---: | :---: | :---: | 
