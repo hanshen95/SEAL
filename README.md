@@ -2,6 +2,7 @@
     <img alt="SEAL logo" src="./docs/seal_logo.png" style="height: 110px;" />
 </div>
 
+[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/hanshen95/SEAL/blob/main/LICENSE) [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)  [![Arxiv link](https://img.shields.io/badge/cs.LG-in queue-b31b1b?logo=arxiv&logoColor=red)](https://arxiv.org/)
 <hr>
 
 
@@ -76,28 +77,86 @@ Navigate to scripts folder
 ```
 cd examples/scripts
 ```
-To train with SFT without data selection, run
+
+#### Data selector training
+In SEAL, we first train a data selector, e.g., with the following script
 
 ```bash
-# standard SFT on Llama-3-8b-Instruct
-bash train_sft_llama3.sh
+deepspeed ../train_sft_selector.py \
+    --max_len 2048 \
+    --dataset <upper-level safe dataset> \ 
+    --new_dataset <original fine-tuning dataset> \ 
+    --upperlevel_weight <initial safe loss weight, between (0,1]> \
+    --upperlevel_weight_decay <weight decay each epoch> \
+    --train_batch_size 64 \
+    --micro_train_batch_size 1 \
+    --max_samples <dataset size limit>\
+    --pretrain <aligned model> \
+    --selector_activation <softmax or sigmoid> \
+    --selector_name <selector name> \
+    --save_steps -1 \
+    --logging_steps 1 \
+    --eval_steps -1 \
+    --zero_stage 3 \
+    --max_epochs 3 \
+    --bf16 \
+    --learning_rate 1e-5 \
+    --selector_learning_rate 5e-3 \
+    --selector_lr_scheduler <deepspeed lr scheduler, e.g., constant> \
+    --lr_scheduler <deepspeed lr scheduler, e.g., cosine> \
+    --gradient_checkpointing \
+    --flash_attn \
+    --lora_rank 16 \
+    --lora_alpha 16 \
+    --target_modules q_proj v_proj
 ```
-In SEAL, we first train a data selector
 
-> We provide SEAL data selector (trained by us) in the ckpt folder. Skip to next step for a quick example.
+For example, we can run on Llama-3-8b-Instruct with our default setting:
+> We provide data selectors trained by us in the ckpt folder. Skip this for a quick run.
 
 ```bash
 # SEAL data selector training
 bash train_selector_llama3.sh
 ```
 
+#### Fine-tuning stage
 
 Then we run SFT with SEAL data selection
+```bash
+deepspeed ../train_sft.py \
+    --max_len 2048 \
+    --dataset <original fine-tuning dataset> \ 
+    --selector_path <data selector path>\
+    --topp <between (0,1], data selection rate> \
+    --train_batch_size 64 \
+    --micro_train_batch_size 1 \
+    --max_samples  <dataset size limit> \
+    --pretrain <initial model>\
+    --save_path <save path>\
+    --save_steps -1 \
+    --logging_steps 1 \
+    --eval_steps -1 \
+    --zero_stage 3 \
+    --max_epochs 3 \
+    --bf16 \
+    --lr_scheduler <deepspeed lr scheduler, e.g., cosine>\
+    --learning_rate 1e-5 \
+    --gradient_checkpointing \
+    --flash_attn \
+    --lora_rank 16 \
+    --lora_alpha 32 \
+    --target_modules q_proj v_proj
+```
 
-> **[Optional]** Change the **selector_path** argument in the script to your trained selector from previous step.
-
+For example, the user can run on Llama-3-8b-Instruct with default setting
 ```bash
 # Fine-tuning with data selection
 bash train_seal_sft_llama3.sh
 ```
 
+To train with SFT without data selection, the user just have to set topp as 1. or not specifying the selector_path argument. For example, to run SFT on Llama-3-8b-Instruct without data selection under default setups, use
+
+```bash
+# standard SFT on Llama-3-8b-Instruct
+bash train_sft_llama3.sh
+```
