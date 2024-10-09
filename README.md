@@ -2,7 +2,7 @@
     <img alt="SEAL logo" src="./docs/seal_logo.png" style="height: 110px;" />
 </div>
 
-[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/hanshen95/SEAL/blob/main/LICENSE) [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)  [![Arxiv link](https://img.shields.io/badge/cs.LG-in queue-b31b1b?logo=arxiv&logoColor=red)](https://arxiv.org/)
+[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/hanshen95/SEAL/blob/main/LICENSE) [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)  [![Arxiv link](https://img.shields.io/badge/cs.LG-queued-b31b1b?logo=arxiv&logoColor=red)](https://arxiv.org/)
 <hr>
 
 
