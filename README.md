@@ -162,7 +162,7 @@ To train with SFT without data selection, the user just have to set topp as 1. o
 # standard SFT on Llama-3-8b-Instruct
 bash train_sft_llama3.sh
 ```
-#### Citation
+## Citation
 If you find our work interesting, please consider citing this paper:
 ```
 @article{shen2024seal,
