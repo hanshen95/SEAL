@@ -4,11 +4,11 @@
 
 <hr>
 
-[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/hanshen95/SEAL/blob/main/LICENSE) [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)  [![Arxiv link](https://img.shields.io/badge/cs.LG-queued-b31b1b?logo=arxiv&logoColor=red)](https://arxiv.org/)
+[![Code License](https://img.shields.io/badge/Code%20License-Apache_2.0-green.svg)](https://github.com/hanshen95/SEAL/blob/main/LICENSE) [![Python 3.10+](https://img.shields.io/badge/python-3.10+-blue.svg)](https://www.python.org/downloads/release/python-3100/)  [![Arxiv link](https://img.shields.io/badge/cs.LG-2410.07471-b31b1b?logo=arxiv&logoColor=red)](https://arxiv.org/abs/2410.07471)
 
 
 
-SEAL is an LLM fine-tuning framework with safety-enhancing data selection. This implementation is based on OpenRLHF, DeepSpeed, Transformers and Pytorch.
+[SEAL](https://arxiv.org/abs/2410.07471) is an LLM fine-tuning framework with safety-enhancing data selection (see [paper](https://arxiv.org/abs/2410.07471)). This implementation is based on OpenRLHF, DeepSpeed, Transformers and Pytorch.
 
 
 
@@ -48,8 +48,8 @@ We give an example on the Llama-3-8b-Instruct model as follows.
 | Random selection | 50.78 | 50.8 | 56.31 |
 | [DSIR](https://github.com/p-lambda/dsir) | 57.57   | 55.84 | 53.95 |
 |[SafeInstr](https://github.com/vinid/safety-tuned-llamas) | 57.97  | 54.22 | 64.49 |
-|SEAL | 60.22 | 53.88 | 69.29|
-|SEAL+[SafeInstr](https://github.com/vinid/safety-tuned-llamas)| 67.19 | 53.91 | 77.28 |
+|[SEAL](https://arxiv.org/abs/2410.07471) | 60.22 | 53.88 | 69.29|
+|[SEAL](https://arxiv.org/abs/2410.07471)+[SafeInstr](https://github.com/vinid/safety-tuned-llamas)| 67.19 | 53.91 | 77.28 |
 
 
 ## Installation
@@ -162,3 +162,14 @@ To train with SFT without data selection, the user just have to set topp as 1. o
 # standard SFT on Llama-3-8b-Instruct
 bash train_sft_llama3.sh
 ```
+#### Citation
+If you find our work interesting, please consider citing this paper:
+```
+@article{shen2024seal,
+  title={SEAL: Safety-enhanced Aligned LLM Fine-tuning via Bilevel Data Selection},
+  author={Shen, Han and Chen, Pin-Yu and Das, Payel and Chen, Tianyi},
+  journal={arXiv preprint arXiv:2410.07471},
+  year={2024}
+}
+```
+
