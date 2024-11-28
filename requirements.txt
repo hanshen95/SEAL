@@ -9,7 +9,7 @@ loralib
 optimum
 packaging
 peft
-torch==2.2.2
+torch
 torchmetrics
 tqdm
 transformers==4.43.3
